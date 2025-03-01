@@ -2,99 +2,99 @@
 
 ## 🪙 Token Monad - ERC20 Upgradeável
 
-### 📌 Visão Geral
+### 📌 Overview
 
-Token Monad é um contrato ERC20 upgradeável baseado em Solidity 0.8.28. Ele inclui funcionalidades adicionais como controle de acesso, pausabilidade, blacklist, staking e proteção contra reentrância. O contrato está preparado para ser atualizado no futuro sem perder os dados armazenados.
+Token Monad is an upgradeable ERC20 contract based on Solidity 0.8.28. It includes additional functionalities such as access control, pausability, blacklist, staking, and reentrancy protection. The contract is designed to be upgraded in the future without losing stored data.
 
-## ✅ Requisitos
+## ✅ Requirements
 
-Antes de configurar e rodar o projeto, certifique-se de ter os seguintes requisitos:
+Before setting up and running the project, ensure you have the following requirements:
 
-- **Node.js** (versão 16 ou superior) - Para execução do Hardhat e scripts de deploy.
-- **NPM ou Yarn** - Para gerenciar dependências do projeto.
-- **Hardhat** - Framework para desenvolvimento de smart contracts.
-- **Metamask ou outra carteira Web3** - Para interagir com o contrato.
-- **Acesso a uma Testnet (Monad Testnet)** - Para implantar e testar o contrato.
-- **Ambiente de desenvolvimento compatível** (VS Code recomendado) - Para editar e compilar contratos.
+- **Node.js** (version 16 or higher) - Required for running Hardhat and deployment scripts.
+- **NPM or Yarn** - To manage project dependencies.
+- **Hardhat** - Framework for smart contract development.
+- **Metamask or another Web3 wallet** - To interact with the contract.
+- **Access to a Testnet (Monad Testnet)** - To deploy and test the contract.
+- **A compatible development environment** (VS Code recommended) - For editing and compiling contracts.
 
-## ⚠️ Importante!!!
+## ⚠️ Important!!!
 
-- Crie uma cópia do arquivo hardhat.config.js.example e renomeie-o para hardhat.config.js
+- Create a copy of the hardhat.config.js.example file and rename it to hardhat.config.js.
 
-- E em seguida edite o arquivo hardhat.config.js com a chave privada da sua carteira para fazer o deploy.
+- Then, edit the hardhat.config.js file with your wallet's private key to deploy the contract.
 
-## ⚡ Funcionalidades
+## ⚡ Features
 
-### 🔹 ERC20 Upgradeável
+### 🔹 Upgradeable ERC20
 
-O token é implementado com ERC20Upgradeable da OpenZeppelin, permitindo upgrades sem perder dados do contrato.
+The token is implemented using OpenZeppelin’s ERC20Upgradeable, allowing upgrades without losing contract data.
  
-### 🔹 Controle de Acesso (Roles)
+### 🔹 Access Control (Roles)
 
-Utiliza AccessControlUpgradeable para gerenciar permissões:
+Uses AccessControlUpgradeable to manage permissions:
 
-DEFAULT_ADMIN_ROLE - Administrador geral.
+DEFAULT_ADMIN_ROLE - General administrator.
 
-MINTER_ROLE - Permissão para criar novos tokens.
+MINTER_ROLE - Permission to mint new tokens.
 
-### 🔹 Cap de Emissão
+### 🔹 Emission Cap
 
-Define um limite máximo de tokens (cap) que pode ser emitido.
+Defines a maximum token cap that can be minted.
 
-Impede que a emissão ultrapasse esse limite.
+Prevents minting beyond this limit.
 
-### 🔹 Transferências Protegidas
+### 🔹 Protected Transfers
 
-Blacklist: Bloqueia transferências de endereços considerados maliciosos.
+Blacklist: Blocks transfers from addresses deemed malicious.
 
-Pausabilidade: Permite ao administrador pausar transferências.
+Pausability: Allows the administrator to pause transfers.
 
-Registro de transações: Armazena o timestamp da última transação para cada conta.
+Transaction logging: Stores the timestamp of the last transaction for each account.
 
-### 🔹 Staking com Recompensas
+### 🔹 Staking with Rewards
 
-Os usuários podem travar tokens para receber 15% APY.
+Users can lock tokens to receive 15% APY.
 
-Tempo de staking é registrado no contrato.
+Staking time is recorded in the contract.
 
-Eventos emitidos para staking e unstaking.
+Events are emitted for staking and unstaking.
 
-### 🔹 Proteção contra Reentrância
+### 🔹 Reentrancy Protection
 
-Utiliza ReentrancyGuardUpgradeable para evitar ataques de reentrância.
+Uses ReentrancyGuardUpgradeable to prevent reentrancy attacks.
 
-## 🛠️ Como Alterar Nome e Valores do Token
+## 🛠️ How to Change Token Name and Values
 
-###  👉 Alterar Nome e Símbolo do Token
+###  👉 Change Token Name and Symbol
 
-Em scripts/deploy.ts, altere as variáveis name e symbol para os novos valores.
+Edit the variables name and symbol in scripts/deploy.ts:
 
 `const tokenName = "GMonad";`
 
 `const tokenSymbol = "GMD";`
 
-### 👉 Alterar Supply Inicial e Cap
+### 👉 Change Initial Supply and Cap
 
-Em scripts/deploy.ts, altere as variáveis initialSupply e cap para os novos valores.
+Edit the variables initialSupply and cap in scripts/deploy.ts:
 
 `const initialSupply = ethers.parseUnits("1000000", 18) // 1 milhão de tokens`
 
 `const cap = ethers.parseUnits("2000000", 18) // 2 milhões de tokens como limite`
 
-## 🛠️ Como Implantar o Contrato
+## 🛠️ How to Deploy the Contract
 
-### 1️- Instalar Dependências
+### 1️- Install Dependencies
 
 npm install
 
-### 2- Compilar o Contrato
+### 2- Compile the Contract
 
 npx hardhat compile
 
-### 3- Implantar na Rede Monad Testnet
+### 3- Deploy to Monad Testnet
 
 npx hardhat run scripts/deploy.ts --network monadTestnet
 
-## 📜 Licença
+## 📜 License
 
-Este projeto está licenciado sob a MIT License.
+This project is licensed under the MIT License.
