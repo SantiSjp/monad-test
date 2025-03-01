@@ -1,6 +1,6 @@
 # Sample Hardhat Project to deploy in MONAD TESTNET
 
-## 🪙 Token Monad - ERC20 Upgradeável
+## 🪙 Token Monad - ERC20 Upgradeable
 
 ### 📌 Overview
 
